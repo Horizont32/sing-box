@@ -14,7 +14,8 @@ COUNT_SHADOWSOCKS=$(jq -r '.inbounds[] | select(.method | index("2022-")) | .use
 
 # VLESS
 PUBLIC_KEY="{{PUBLIC_KEY}}"
-PORT_VLESS=$(jq -r '.inbounds[] | select(.type=="vless") | .listen_port' $CONFIG)
+# PORT_VLESS=$(jq -r '.inbounds[] | select(.type=="vless") | .listen_port' $CONFIG)
+PORT_VLESS=$PORT
 SNI=$(jq -r '.inbounds[] | select(.type=="vless") | .tls.reality.handshake.server' $CONFIG)
 SID=$(jq -r '.inbounds[] | select(.type=="vless") | .tls.reality.short_id[]' $CONFIG)
 COUNT_VLESS=$(jq -r '.inbounds[] | select(.type=="vless") | .users | length' $CONFIG)
