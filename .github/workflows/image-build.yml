@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - 'main'
-  schedule:
-    - cron: '11 0 * * *'
 
 jobs:
   docker:
@@ -24,8 +22,8 @@ jobs:
         uses: cloudposse/github-action-docker-image-exists@0.1.2
         with:
           registry: registry.hub.docker.com
-          organization: "itdoginfo"
-          repository: "sing-box"
+          organization: "horizont322"
+          repository: "commo"
           tag: ${{ steps.sing-box.outputs.release }}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -45,5 +43,5 @@ jobs:
         with:
           push: true
           build-args: RELEASE=${{ steps.sing-box.outputs.release }}
-          tags: itdoginfo/sing-box:${{ steps.sing-box.outputs.release }}
+          tags: horizont322/commo:${{ steps.sing-box.outputs.release }}
           platforms: linux/386,linux/amd64,linux/arm64,linux/s390x
